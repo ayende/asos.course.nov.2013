@@ -13,8 +13,7 @@ namespace Asos.Course.Controllers
 		 {
 			 var store = new DocumentStore
 			 {
-				 Url = "http://localhost:8787",
-				 DefaultDatabase = "Asos.Course"
+				 ConnectionStringName = "RavenDB"
 			 };
 			 store.Initialize();
 
@@ -24,5 +23,22 @@ namespace Asos.Course.Controllers
 		 });
 
 		 public IDocumentStore DocumentStore { get { return _documentStoreLazy.Value; } }
+
+		 public new IDocumentSession Session { get; set; }
+
+		protected override void OnActionExecuting(ActionExecutingContext filterContext)
+		{
+			Session = DocumentStore.OpenSession();
+		}
+
+		protected override void OnActionExecuted(ActionExecutedContext filterContext)
+		{
+			using (Session)
+			{
+				if (Session == null || filterContext.Exception != null)
+					return;
+				Session.SaveChanges();
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
 using System.Web.Mvc;
 using Raven.Client;
 using Raven.Client.Document;
@@ -39,6 +40,11 @@ namespace Asos.Course.Controllers
 					return;
 				Session.SaveChanges();
 			}
+		}
+
+		protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+		{
+			return base.Json(data, contentType, contentEncoding, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

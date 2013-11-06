@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Linq;
+using Asos.Course.Indexes;
 using Asos.Course.Models;
+using ET.FakeText;
 using Raven.Client;
 
 namespace Asos.Course.Controllers
 {
 	public class HomeController : AbstractController
 	{
+		public object Search(string q)
+		{
+			var results = Session.Query<People_Search.Result, People_Search>()
+				.Search(x => x.Query, q)
+				.As<Person>()
+				.ToList();
+
+			return Json(results);
+		}
+
 		public object NewCar()
 		{
 			Session.Store(new Car
@@ -26,6 +38,23 @@ namespace Asos.Course.Controllers
 		public object ListCars()
 		{
 			return Json(Session.Query<Car>().ToList());
+		}
+
+		public object LotsOfData(int count)
+		{
+			var textGenerator = new TextGenerator(WordTypes.Name);
+			using (var bulk = DocumentStore.BulkInsert())
+			{
+				for (int i = 0; i < count; i++)
+				{
+					bulk.Store(new Person
+					{
+						Name = textGenerator.GenerateText(i % 2 == 0 ? 2 : 3),
+						Email = textGenerator.GenerateWord(i%10+1) + "@" + textGenerator.GenerateWord(i%7+2) + ".com"
+					});
+				}
+			}
+			return Json("Done with " + count);
 		}
 
 		public object CarsByOwner(string owner)

@@ -133,7 +133,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Indexes\People_Search.cs" />
+    <Compile Include="Indexes\Products_Search.cs" />
     <Compile Include="Models\Car.cs" />
+    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

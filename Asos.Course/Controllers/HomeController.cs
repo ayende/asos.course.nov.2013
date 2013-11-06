@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Linq;
+using System.Security.AccessControl;
 using Asos.Course.Indexes;
 using Asos.Course.Models;
-using ET.FakeText;
+using		ET.FakeText;
 using Raven.Client;
 
 namespace Asos.Course.Controllers
 {
 	public class HomeController : AbstractController
 	{
+		public object ProductSearch(string key, string val)
+		{
+			var queryable = Session.Query<Product, Products_Search>()
+				.Where(product => product.Properties[key] == val);
+			var y = queryable
+				.ToList();
+			return Json(y);
+		}
+
 		public object Search(string q)
 		{
 			var results = Session.Query<People_Search.Result, People_Search>()

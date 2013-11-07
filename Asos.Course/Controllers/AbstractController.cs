@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using System.Web.Mvc;
+using Asos.Course.Models;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Indexes;
@@ -16,8 +17,11 @@ namespace Asos.Course.Controllers
 			 {
 				 ConnectionStringName = "RavenDB"
 			 };
-			 store.Initialize();
 
+			 store.RegisterListener(new AuditListener());
+
+			 store.Initialize();
+			 
 			 IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), store);
 
 			 return store;

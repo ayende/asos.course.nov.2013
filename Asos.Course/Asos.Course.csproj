@@ -128,7 +128,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AbstractController.cs" />
+    <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Controllers\Workflows_Search.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StyleController.cs" />
+    <Compile Include="Controllers\VetController.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,6 +144,7 @@
     <Compile Include="Models\Dog.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Workflow.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

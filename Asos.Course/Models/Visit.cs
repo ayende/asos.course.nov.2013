@@ -57,7 +57,7 @@ namespace Asos.Course.Models
 										  },
 							_ = from v in g.SelectMany(x => x.Visitations)
 								group v by new { v.Year, v.Location } into g2
-								select CreateField(g2.Key.Location + "_" + g2.Key.Year, g2.Sum(x => x.Count))
+								select CreateField(g2.Key.Location + "_" + g2.Key.Year, g2.Sum(x => x.Count), true, false)
 						};
 		}
 	} 

@@ -129,6 +129,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -136,8 +137,10 @@
     <Compile Include="Indexes\Products_Search.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\Dog.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

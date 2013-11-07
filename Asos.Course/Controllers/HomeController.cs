@@ -10,6 +10,23 @@ namespace Asos.Course.Controllers
 {
 	public class HomeController : AbstractController
 	{
+		public object Dogs(int count)
+		{
+			using (var bulk = DocumentStore.BulkInsert())
+			{
+				var random = new Random();
+				for (int i = 0; i < count; i++)
+				{
+					bulk.Store(new Dog
+					{
+						Name = "Dog #" + i,
+						Owners = Enumerable.Range(0, random.Next(1, 3)).Select(x=>"owners/" + random.Next(1,count+1)).ToArray()
+					});
+				}
+			}
+			return Json("done");
+		}
+
 		public object ProductSearch(string key, string val)
 		{
 			var queryable = Session.Query<Product, Products_Search>()

@@ -131,7 +131,7 @@
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\Workflows_Search.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StyleController.cs" />
+    <Compile Include="Controllers\WorkflowController.cs" />
     <Compile Include="Controllers\VetController.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="Global.asax.cs">
